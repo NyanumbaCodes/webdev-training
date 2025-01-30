@@ -425,9 +425,17 @@ echo "\n";
 
 // Assignment for Justine Stephanie - 30/01/2025
 
-function getAverageAge(array $people)
+function getAverageAge(array $ages)
 {
+    if (count($ages) === 0) {
+        return "Error: No ages given";
+    }
+     $sum = array_sum($ages);
+     $count = count($ages);
+
+     return $sum / $count;
     
 }
 
-echo getAverageAge($data);
+$ages = [20, 25, 27, 25, 20, 20, 20];
+echo "The average age is: " . getAverageAge($ages);
