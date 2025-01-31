@@ -435,3 +435,5 @@ function getAverageAge(array $people)
 }
 
 echo getAverageAge($data);
+
+

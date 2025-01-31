@@ -182,7 +182,7 @@ class Animal
     {
         return "The animal makes a sound";
     }
-}   
+}
 
 class Dog extends Animal
 {
@@ -190,7 +190,7 @@ class Dog extends Animal
     {
         return "Woof Woof";
     }
-}   
+}
 
 class Cat extends Animal
 {
@@ -223,12 +223,13 @@ echo "Encapsulation";
 echo "\n";
 echo "\n";
 
-class Teacher{
+class Teacher
+{
     private $first_name;
     private $last_name;
     private $dateOfBirth;
     private $gender;
-    private $salary; 
+    private $salary;
 
     public function setName($first_name, $last_name)
     {
@@ -292,7 +293,6 @@ class ClassTeacher extends Teacher
             "class" => $this->class
         ];
     }
-    
 }
 echo "\n";
 echo "\n";
@@ -303,7 +303,7 @@ $classTeacher->setGender("Male");
 $classTeacher->setSalary(100000);
 $classTeacher->setClass("Class 1");
 
-print_r($classTeacher->getDetails());   
+print_r($classTeacher->getDetails());
 
 
 
@@ -364,3 +364,91 @@ print_r($car->start());
 // It allows us to create more testable code.
 // It allows us to create more readable code.
 
+
+class TaxPaymentsService
+{
+    public $gross_salary;
+    public $insurance_premium;
+    public $tax_relief;
+
+    public function __construct($gross_salary, $insurance_premium, $tax_relief)
+    {
+        $this->gross_salary = $gross_salary;
+        $this->insurance_premium = $insurance_premium;
+        $this->tax_relief = $tax_relief;
+    }
+
+    public function insuranceRelief()
+    {
+        return $this->insurance_premium * 0.15;
+    }
+
+    public function incomeTax()
+    {
+        $level1 = 24000;
+        $level2 = 32333;
+        $level3 = 500000;
+        $level4 = 800000;
+
+        $tax = 0;
+
+        if ($this->gross_salary <= $level1) {
+            $tax = $this->gross_salary * 0.1;
+        } elseif ($this->gross_salary > $level1 && $this->gross_salary <= $level2) {
+
+            $tax = (($this->gross_salary - $level1) * 0.25) + ($level1 * 0.1);
+        } elseif ($this->gross_salary > $level2 && $this->gross_salary <= $level3) {
+            $tax = (($this->gross_salary - $level2) * 0.30) + (($level2 - $level1) * 0.25) + ($level1 * 0.1);
+        } elseif ($this->gross_salary > $level3 && $this->gross_salary <= $level4) {
+            $tax = (($this->gross_salary - $level3) * 0.325) + (($level3 - $level2) * 0.30) + (($level2 - $level1) * 0.25) + ($level1 * 0.1);
+        } else {
+            $tax = (($this->gross_salary - $level4) * 0.35) + (($level4 - $level3) * 0.325) + (($level3 - $level2) * 0.30) + (($level2 - $level1) * 0.25) + ($level1 * 0.1);
+        }
+
+        return $tax;
+    }
+
+    public function paye()
+    {
+        return $this->incomeTax() - ($this->insuranceRelief() + $this->tax_relief);
+    }
+
+    public function netSalary()
+    {
+        return $this->gross_salary - $this->paye() - $this->insurance_premium;
+    }
+}
+
+
+$taxPaymentsService = new TaxPaymentsService(100000, 3000, 2400);
+
+echo "\n";
+echo "\n";
+
+echo "Gross Salary: KES " . number_format($taxPaymentsService->gross_salary, 2);
+echo "\n";
+echo "Insurance Premium: KES " . number_format($taxPaymentsService->insurance_premium, 2);
+echo "\n";
+echo "Tax Relief: KES " . number_format($taxPaymentsService->tax_relief, 2);
+echo "\n";
+
+echo "Insurance Relief: KES " . number_format($taxPaymentsService->insuranceRelief(), 2);
+
+
+
+echo "\n";
+echo "Income Tax: KES " . number_format($taxPaymentsService->incomeTax(), 2);
+echo "\n";
+echo "PAYE: KES " . number_format($taxPaymentsService->paye(), 2);
+echo "\n";
+echo "Net Salary: KES " . number_format($taxPaymentsService->netSalary(), 2);
+
+
+
+
+
+
+
+
+// A Constructor is a method that is called when an object is created.
+// A Destructor is a method that is called when an object is destroyed.
