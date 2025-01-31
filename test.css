@@ -1,0 +1,24 @@
+body{
+    background-color: red;
+}
+
+body a{
+    color: blue;
+}
+
+body a:hover{
+    color: green;
+}
+
+body li{
+    list-style: none;
+}
+
+body li a{
+    color: blue;
+}
+
+body li a:hover{
+    color: green;
+}
+

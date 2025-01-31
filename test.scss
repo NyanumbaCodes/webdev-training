@@ -1,0 +1,21 @@
+body{
+    background-color: red;
+    a{
+        color: blue;
+        &:hover{
+            color: green;
+        }
+    }
+    li{
+        list-style: none;
+        a{
+            color: blue;
+            &:hover{
+                color: green;
+            }
+        }
+        i{
+            font-size: 20px;
+        }
+    }
+}
