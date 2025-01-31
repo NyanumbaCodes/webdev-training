@@ -427,7 +427,11 @@ echo "\n";
 
 function getAverageAge(array $people)
 {
-    
+    $sum = 0;
+    foreach ($people as $person) {
+        $sum += $person['age'];
+    }
+    return $sum / count($people);
 }
 
 echo getAverageAge($data);
