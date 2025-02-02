@@ -439,3 +439,21 @@ function getAverageAge(array $ages)
 
 $ages = [20, 25, 27, 25, 20, 20, 20];
 echo "The average age is: " . getAverageAge($ages);
+
+echo "\n";
+echo "\n";
+
+
+
+$a = "Hello World!";
+$a = str_replace("World!", "Daniel", $a);
+
+echo $a;
+echo "\n";
+echo "\n";
+
+$a = str_repeat($a . " ", 4);
+
+echo "$a\n";
+
+
